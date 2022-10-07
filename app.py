@@ -2,7 +2,7 @@ from flask import Flask, render_template,request
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
-
+import os
 
 loaded_model = pickle.load(open("finalized_model.sav",'rb'))
 
@@ -21,7 +21,7 @@ def predict():
 	return render_template('result11.html', res = prediction)
 
 if __name__ == "__main__":
-	app.run(debug = True)
+	app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
 
 
 
